@@ -8,6 +8,14 @@
 3. **Unlock & Memorize**: Only after clearing probes and tests do concise bold-keyword standard answers unlock for fast retention.
 4. **Answer-Grounded Mock Simulation**: AI uses `answer_key.md` as its live rubric to run closed-book mock interviews, oral exams, case challenges, or situational dialogues.
 
+## Documentation & Languages
+- [English README](README.md)
+- [Simplified Chinese (简体中文)](README.zh-CN.md)
+- [Traditional Chinese (繁體中文)](README.zh-TW.md)
+- [Japanese (日本語)](README.ja.md)
+- [Korean (한국어)](README.ko.md)
+- [Spanish (Español)](README.es.md)
+
 ## Repository Files
 - [Skill Specification](skills/socratic-workbench/SKILL.md): Main conversational workflow for `npx skills`, Antigravity, Claude Code, Codex.
 - [Internal Coach Rules](skills/socratic-workbench/references/coach-behavior.md): Invisible guardrails for consistent behavior across lightweight/Flash models.

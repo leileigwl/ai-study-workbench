@@ -4,7 +4,7 @@
 
 **把任何书本、课本、代码库或备考资料喂给 AI：先提炼标准答案、生成无剧透练习本带你盲练；练完解锁精炼答案去背诵；最后用这套标准答案直接做脱稿模拟实战。**
 
-[English](README.md) | [简体中文](README.zh-CN.md) | [Skill 核心规范](skills/socratic-workbench/SKILL.md)
+[English](./README.md) · **简体中文** · [繁體中文](./README.zh-TW.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Español](./README.es.md)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![npx skills 兼容](https://img.shields.io/badge/npx%20skills-即装即用-6f42c1.svg)](skills/socratic-workbench/SKILL.md)

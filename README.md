@@ -4,7 +4,7 @@
 
 **Feed AI any book, textbook, codebase, or exam guide. Practice blind first, unlock extracted standard answers to memorize, then pass live answer-grounded mock simulations.**
 
-[English](README.md) | [简体中文](README.zh-CN.md) | [Skill Spec](skills/socratic-workbench/SKILL.md)
+**English** · [简体中文](./README.zh-CN.md) · [繁體中文](./README.zh-TW.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Español](./README.es.md)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![npx skills compatible](https://img.shields.io/badge/npx%20skills-Compatible-6f42c1.svg)](skills/socratic-workbench/SKILL.md)
