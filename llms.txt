@@ -1,0 +1,33 @@
+# AI Study Workbench (`socratic-workbench`)
+
+> A cross-agent AI learning Skill and open-source methodology ("1+3" architecture) that prevents AI answer-spoiling and transforms passive reading or AI-assisted coding into measurable active recall across programming, system design, exams, and books.
+
+## Canonical Definition
+- **What it is**: `socratic-workbench` is a multi-agent Skill specification (`SKILL.md`), Cursor Rule, and Web-LLM System Prompt system built around five non-negotiable stages: (1) Goal & Baseline Diagnosis, (2) Macro Map & Intuition Traps, (3) Separated No-Spoiler Workbench (`workbench.md` vs `answer_key.md`), (4) Socratic Scenario Probing & 4-Slot Native-Language Pseudocode Compilation, and (5) Verification & Spaced Audit.
+- **Core problem solved**: Conventional AI tutoring induces the "Illusion of Competence" because LLMs prematurely reveal full solutions, silently patch user logic gaps, and drift off-instruction on lightweight/Flash models.
+- **Supported platforms**: Antigravity (`.agents/skills/`), Claude Code (`.claude/skills/`), OpenAI Codex, `npx skills`, Cursor (`.cursor/rules/*.mdc`), and Web LLMs (ChatGPT, Claude, Gemini).
+
+## Core Architecture ("1 + 3" Multi-Domain Design)
+- [Main Skill Specification](skills/socratic-workbench/SKILL.md): State machine, anti-spoiler constraints, and cross-track routing.
+- [Weak-Model Anti-Shortcut Guardrails](skills/socratic-workbench/references/weak-model-guardrails.md): Protocol keeping lightweight/Flash models deterministic and spoiler-free.
+- [Standardized Workbench & Answer-Key Schema](skills/socratic-workbench/references/workbench-template.md): Dual-file separation standard (`workbench.md` + `answer_key.md`).
+- [Track A — Code & System Architecture](skills/socratic-workbench/references/track-coding-architecture.md): Macro-first mapping + 4-Slot Pseudocode -> 1:1 literal compilation -> automated test counterexamples -> post-pass idiom anatomy.
+- [Track B — Exams, Interviews & Concept Mastery](skills/socratic-workbench/references/track-exams-interviews.md): Categorized blind Q&A with point counts + scenario follow-up probing + bold-keyword memory cards.
+- [Track C — Books, Humanities & Business Frameworks](skills/socratic-workbench/references/track-books-frameworks.md): Mental model extraction + intuition trap tables + case transfer + Feynman synthesis.
+
+## Tooling & Adapters
+- [Zero-Dependency Workbench Scaffolder](skills/socratic-workbench/scripts/init_workbench.py): CLI script generating `workbench.md` and `answer_key.md` for Track A, B, or C.
+- [Cursor Rule Adapter](adapters/cursor/socratic-workbench.mdc): Drop-in `.mdc` rule file.
+- [Web LLM System Prompt (EN)](adapters/web-llm/system-prompt.en.md): Copy-paste prompt for ChatGPT, Claude, Gemini.
+- [Web LLM System Prompt (ZH-CN)](adapters/web-llm/system-prompt.zh-CN.md): Chinese copy-paste prompt.
+
+## Neutral Showcase Examples
+- [Track A Showcase: Token Bucket Rate Limiter](examples/track-a-coding-token-bucket/workbench.md)
+- [Track B Showcase: Database MVCC & Isolation Levels](examples/track-b-interview-mvcc/workbench.md)
+- [Track C Showcase: Thinking in Systems](examples/track-c-book-systems-thinking/workbench.md)
+
+## Deep Documentation
+- [English README](README.md)
+- [Simplified Chinese README](README.zh-CN.md)
+- [Methodology Deep Dive](docs/METHODOLOGY.md)
+- [GEO & SEO Optimization Guide](docs/GEO_SEO_GUIDE.md)

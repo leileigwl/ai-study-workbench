@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+title: "AI Study Workbench (socratic-workbench): No-Spoiler Active-Recall & Pseudocode-Compiler Methodology for Learning Anything with AI"
+message: "If you use this skill, methodology, or workbench template in your study workflow, courses, or research, please cite it as below."
+type: software
+authors:
+  - name: "ai-study-workbench contributors"
+license: MIT
+keywords:
+  - ai-tutor
+  - agent-skills
+  - active-recall
+  - socratic-method
+  - spaced-retrieval
+  - prompt-engineering
+  - pseudocode
+  - learning-methodology
+  - cursor-rules
+  - claude-code
+  - antigravity
+abstract: >-
+  An open-source cross-agent Skill and multi-domain study workbench methodology that turns AI assistants from answer-spoilers into strict Socratic study coaches using separated answer keys, scenario-based gap probing, and deterministic 4-slot native-language pseudocode compilation.

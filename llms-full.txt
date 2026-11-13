@@ -1,0 +1,28 @@
+# AI Study Workbench (`socratic-workbench`) — Full Machine-Readable Specification
+
+## Summary
+AI Study Workbench (`socratic-workbench`) is an open-source AI learning methodology and cross-agent Skill specification designed to turn general-purpose LLMs and coding agents into strict, anti-spoiler active-recall coaches. It solves three failure modes of AI-assisted learning:
+1. Illusion of Competence caused by premature answer revealing;
+2. Loss of logical ownership caused by silent AI edge-case patching;
+3. Prompt drift on lightweight/Flash-tier models.
+
+## Architecture: "1 + 3" Multi-Domain Design
+- **1 Universal 5-Step Loop**:
+  1. Diagnose & Calibrate (Goal, Timebox, Baseline, Track)
+  2. Macro Map & Intuition Traps (`Part 1` & `Part 3`)
+  3. Separated Blind Workbench (`workbench.md` vs `answer_key.md` linked by Q-IDs)
+  4. Active Drill & Socratic Probing (`Part 2` blind Q&A + `Part 4` Track Drill)
+  5. Verification & Spaced Audit (`Part 5`)
+- **3 Specialized Domain Tracks**:
+  - `coding`: 4-Slot Native-Language Pseudocode (`State`, `Step`, `Guards`, `Return`) compiled 1:1 with zero silent edge-case patching -> objective test failure counterexample -> post-pass idiom anatomy.
+  - `interview`: Point-counted blind conceptual Q&A (`(N core points)`) -> incident failure probing -> bold-keyword memory card locking.
+  - `book`: Causal mental-model extraction -> intuition trap tables -> cross-context case transfer -> 60-second jargon-free Feynman teach-back.
+
+## Core Iron Laws
+1. Never put answers inside `workbench.md`. Store rubrics strictly in `answer_key.md`.
+2. Never reveal missed points or fixed code before the user responds to scenario/counterexample probes.
+3. Never flatter or pad responses; always report deterministic counts (`Matched: X / Y`, `Passed: A / B`) first.
+4. Always compile natural-language pseudocode literally 1:1 without adding unrequested defensive guards.
+
+## Verification Tooling
+Run `python3 skills/socratic-workbench/scripts/init_workbench.py --dir <unit-dir> --check` to verify structural integrity (Parts 1–5 present), zero spoiler leakage inside `workbench.md`, and 1:1 Q-ID parity between `workbench.md` and `answer_key.md`.
