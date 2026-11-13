@@ -69,8 +69,8 @@
 ### 方式 1：Antigravity / Claude Code / Codex（标准 Skill，`npx skills` 兼容）
 
 ```bash
-# 推上 GitHub 后，任何人可直接一行安装：
-npx skills add <你的GitHub用户名>/ai-study-workbench
+# 直接一行安装（Antigravity / Claude Code / Codex）：
+npx skills add leileigwl/ai-study-workbench
 
 # 本地克隆后也可直接安装：
 npx skills add ./ai-study-workbench

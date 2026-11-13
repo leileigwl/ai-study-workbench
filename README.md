@@ -68,8 +68,8 @@ Most people use AI as a passive textbook summary generator—and immediately for
 ### Option 1: Agent Skill (`npx skills` / Antigravity / Claude Code / Codex)
 
 ```bash
-# Install via npx skills once pushed to GitHub:
-npx skills add <your-github-username>/ai-study-workbench
+# Install via npx skills:
+npx skills add leileigwl/ai-study-workbench
 
 # Or install locally from a cloned repo:
 npx skills add ./ai-study-workbench
@@ -105,6 +105,9 @@ python3 skills/socratic-workbench/scripts/init_workbench.py --dir examples/01-te
 ---
 
 ## FAQ
+
+**How is this different from just asking ChatGPT "quiz me without giving answers"?**  
+In normal chat, prompts wear off quickly: the AI spills hints next to questions, fixes bugs silently in generated code, and stops challenging your gaps. `socratic-workbench` locks the rubric in a separate `answer_key.md`, enforces the **Blind-First Loop** and **4-Slot Plain-Language Coding**, unlocks standard answers for memorization only *after* recall, and finishes with an **Answer-Grounded Mock** simulation.
 
 **Does the AI work off my exact book/material, or invent random quiz questions?**  
 It works strictly from the material you feed it. Step 1 extracts Standard Answers directly from your book, repo, or syllabus into `answer_key.md`, and Step 4 Mock Simulation grades you against those exact answers.
