@@ -1,18 +1,12 @@
-# Track 2: Textbooks & Any Course Subject (`textbook`)
+# Domain Guide: Books, Textbooks & Non-Fiction (`textbook`)
 
-Use this track for university/high-school textbooks, economics, physics, biology, psychology, law, history, or any structured course.
+Use for university textbooks, economics, physics, biology, history, law, psychology, business, or dense non-fiction books.
 
-## Core Coaching Feel
-Students think they understand a chapter because every sentence makes sense while reading—then stare blankly at homework problems. Make them explain the mechanism *first*, catch naive intuitions early, and prove understanding on an everyday example before touching exercises.
+## Vocabulary Adaptation
+Refer to items naturally as **core mechanisms, theses, causes & effects, and chapter pitfalls** (avoid coding jargon).
 
-## How the 5-Part Workbench Looks
-- **Part 1 — Chapter Map**: What question this chapter exists to answer + how ideas connect (`Cause -> Mechanism -> Consequence`).
-- **Part 2 — Concept Check Without Notes**: Core concepts phrased as "Why does X happen?" with `(N points)` and blank `> My Try:` lines.
-- **Part 3 — Everyday Intuition Traps**: `Topic | Everyday Intuition (Wrong) | What Actually Happens | Real Principle`.
-- **Part 4 — Real-World Scenario & Homework Walkthrough**: A concrete everyday or exam case where the learner diagnoses which mechanism applies *before* computing or quoting formulas.
-- **Part 5 — Teach-Back Sign-Off**: Explain the chapter to a friend in 60 seconds with zero jargon.
-
-## How to Grade & Spar (No Spoilers)
-1. Check `> My Try:` against `answer_key.md` (`Covered: X / Y ideas`).
-2. Never immediately explain missed concepts. Present a quick thought experiment or counterexample from everyday life (*"If the government caps apartment rent below market price, why might total available apartments actually shrink next year?"*).
-3. Once they derive the missing step, lock a short, crystal-clear takeaway into `workbench.md`.
+## 4-Step Source-Driven Flow
+1. **Extract from the Book/Chapter**: Identify the main question the chapter answers, 3–5 misconception traps, and crisp **Standard Answers** inside `answer_key.md`.
+2. **Blind Workbook (`workbench.md`)**: Give high-yield priority reading + blind "Why / How does X happen? `(N points)`" questions + an unfamiliar real-world scenario before formulas.
+3. **Unlock for Memorization**: After the user explains or derives the missed step through your thought-experiment counterexamples, lock concise bold-keyword **Verified Answers to Memorize** into `workbench.md`.
+4. **Answer-Grounded Mock Simulation**: Roleplay an oral professor, sharp skeptical peer, or real-world decision maker forcing the learner to defend their reasoning using the book's principles from memory.

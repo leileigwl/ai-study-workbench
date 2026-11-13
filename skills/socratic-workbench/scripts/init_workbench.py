@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Zero-dependency CLI scaffolder & anti-spoiler checker for Socratic Study Workbenches."""
+"""Internal template & anti-spoiler parity checker for Socratic Study Workbenches."""
 
 from __future__ import annotations
 
@@ -12,46 +12,34 @@ from pathlib import Path
 
 @dataclass(frozen=True)
 class TrackSpec:
-    """Track metadata and Part 4 sparring/drill template."""
+    """Domain metadata and Part 4/Mock simulation blocks."""
 
     label: str
     goal_hint: str
     part4_heading: str
     part4_body: str
+    mock_prompt: str
 
 
 TRACK_SPECS: dict[str, TrackSpec] = {
-    "english": TrackSpec(
-        label="english",
-        goal_hint="Real-life speaking/writing sparring — produce first, get coached naturally, upgrade phrasing",
-        part4_heading="Part 4: Live Roleplay Sparring",
-        part4_body="""### Roleplay 4.1: Realistic Scenario
-> **Setting**: `<Describe the real situation, e.g. client pushback, coffee chat, salary discussion>`
-> **Your Role**: `<Who you are playing>` | **Coach Role**: `<Who pushes back>`
-
-- **Coach Opening Line**: `"<Realistic question or pushback>"`
-- **Your First Reply (Write naturally before looking anything up)**: 
-- **Coach Follow-Up & Upgraded Phrasing**: *(Coach responds in character, probes gaps, then gives natural upgrades)*
-""",
-    ),
     "textbook": TrackSpec(
         label="textbook",
-        goal_hint="Understand why a chapter works, catch naive intuition traps, and solve real cases without peeking",
-        part4_heading="Part 4: Real-World Case & Problem Walkthrough",
-        part4_body="""### Case 4.1: Everyday or Homework Scenario
-> **Problem**: `<Describe a concrete real-life situation or textbook exercise before giving formulas>`
+        goal_hint="Extract core book mechanisms into answer_key.md, drill blind first, memorize verified answers, then pass oral mock checks",
+        part4_heading="Part 4: Applied Case Practice (From the Book)",
+        part4_body="""### Case 4.1: Everyday or Chapter Scenario
+> **Scenario**: `<Real-world situation or textbook exercise testing the chapter's core mechanism>`
 
-1. **Which core rule/mechanism applies here (in your own words)?**
+1. **Core mechanism at work (in your own words before checking formulas):**
    - 
-2. **Walk through your prediction or calculation:**
+2. **Prediction or walkthrough:**
    - 
-3. **Coach Check & Edge Twist**: *(Completed during interactive review)*
 """,
+        mock_prompt="Roleplay a skeptical peer or oral professor questioning why the chapter's rule holds—and where it breaks—strictly against `answer_key.md`.",
     ),
     "coding": TrackSpec(
         label="coding",
-        goal_hint="Own 100% of the logic & edge cases in plain language; let AI compile syntax literally + run tests",
-        part4_heading="Part 4: Plain-Language Code Drill (4-Step Logic -> Real Tests)",
+        goal_hint="Own system logic & edge cases in 4 plain-language steps; compile 1:1 to real tests, memorize tradeoffs, then defend in design mock",
+        part4_heading="Part 4: 4-Step Plain-Language Code Drill",
         part4_body="""### Drill 4.1: `<function_or_component_name>`
 
 #### Input / Output Examples
@@ -62,78 +50,91 @@ TRACK_SPECS: dict[str, TrackSpec] = {
 }
 ```
 
-#### Already Handled For You (Ignore Boilerplate)
+#### Already Handled For You
 - Signature: `solve(arg) -> Result`
-- Available fields: `<List exact fields/types so you focus only on logic>`
 
-#### Your 4 Plain-Language Steps (Chinese or English — NO need to write raw syntax)
+#### Your 4 Plain-Language Steps (No raw syntax needed)
 1. **What to store**: 
 2. **Main step / loop**: 
 3. **Edge cases to guard**: 
 4. **What to return**: 
 """,
+        mock_prompt="Run a closed-book architecture review: ask 'what breaks under 10x load, clock skew, or invalid input?' graded against `answer_key.md`.",
     ),
     "interview": TrackSpec(
         label="interview",
-        goal_hint="Blind recall with point counts, scenario stress-testing, and concise keyword memory cards",
-        part4_heading="Part 4: Realistic Failure / Exam Twist Case",
-        part4_body="""### Case 4.1: Production Incident or Exam Vignette
-> **Scenario**: `<Describe a tricky failure symptom, tradeoff dilemma, or multi-part exam question>`
+        goal_hint="Extract rubric points into answer_key.md, practice blind recall, lock bold memory notes, and drill answer-grounded mock interviews",
+        part4_heading="Part 4: Incident / Exam Vignette Drill",
+        part4_body="""### Case 4.1: Production Incident or Exam Case
+> **Scenario**: `<Describe a realistic symptom, bottleneck, or multi-part exam vignette>`
 
-- **Your Root-Cause Diagnosis**: 
+- **Root-Cause Diagnosis**: 
 - **Fix + One Tradeoff**: 
 """,
+        mock_prompt="Conduct a rapid-fire mock interview/oral exam strictly grounded in `answer_key.md` scoring points until every answer lands cold.",
+    ),
+    "language": TrackSpec(
+        label="language",
+        goal_hint="Extract target expressions & tone rules into answer_key.md, practice blind first, memorize upgrades, then run live roleplay simulation",
+        part4_heading="Part 4: Contextual Expression Drill",
+        part4_body="""### Scenario 4.1: Real-World Situation From Material
+> **Setting**: `<Describe the real communication context from the language book/unit>`
+
+- **Prompt**: `"<Realistic opening line from the other speaker>"`
+- **Your Reply (Write naturally before checking model sentences)**: 
+""",
+        mock_prompt="Run a multi-turn closed-book roleplay simulation checking whether memorized phrases from `answer_key.md` are used naturally under pressure.",
     ),
 }
 
 
 def render_workbench(title: str, track: str) -> str:
-    """Render a clean, spoiler-free 5-part workbench.md for the chosen track."""
+    """Render a spoiler-free 5-part workbench.md for the chosen material track."""
     spec = TRACK_SPECS[track]
-    return f"""# {title} — Active Study Workbench
+    return f"""# {title} — Practice Workbench
 
-> **Track**: `{spec.label}`  
-> **What you'll master**: {spec.goal_hint}  
-> **Rule**: Try every section below on your own *before* opening `answer_key.md`.
+> **Domain**: `{spec.label}`  
+> **Workflow**: {spec.goal_hint}  
+> **Spoiler Lock**: Practice here *before* unlocking standard answers from `answer_key.md`.
 
 ---
 
-## Part 1: What Matters Most & Big Picture
+## Part 1: High-Yield Guide & Big Picture
 
-### 1.1 Priority Guide
+### 1.1 Priority Reading Focus
 - **Must Master**:
-  - `<Core idea or skill 1>`
-- **Good Context (Don't over-memorize)**:
-  - `<Supporting detail>`
+  - `<Core thesis, mechanism, or pattern>`
+- **Good Context**:
+  - `<Supporting details>`
 
-### 1.2 How It All Connects
+### 1.2 Big-Picture Map
 ```text
-[Trigger / Input] ---> [{title}] ---> [Outcome / Next Step]
+[Source Input / Premise] ---> [{title}] ---> [Result / Impact]
 ```
 
 ---
 
-## Part 2: Blind Check Questions (Try First -> Follow-Up -> Final Note)
+## Part 2: Blind Check Questions (Practice -> Follow-Up -> Unlock to Memorize)
 
-> Jot rough keywords under `> **My Try**:` and send to your AI coach. Don't peek at `answer_key.md`.
+> Write rough keywords under `> **My Try**:` first. Once cleared, your coach unlocks concise bold answers under `> **Verified Answer to Memorize**:`.
 
-### Topic A: Core Ideas
+### Topic A: Core Understanding
 
-#### Q1.1 `<Question in plain language>` (`3` points)
+#### Q1.1 `<Question extracted from the source material>` (`3` points)
 - > **My Try**: 
-- > **Coach Feedback & Final Note**: *(Unlocked after your try + follow-up)*
+- > **Verified Answer to Memorize**: *(Locked until blind try + follow-up probe are completed)*
 
-#### Q1.2 `<Boundary / "What happens if..." question>` (`3` points)
+#### Q1.2 `<Boundary / tradeoff / misconception question>` (`3` points)
 - > **My Try**: 
-- > **Coach Feedback & Final Note**: *(Unlocked after your try + follow-up)*
+- > **Verified Answer to Memorize**: *(Locked until blind try + follow-up probe are completed)*
 
 ---
 
-## Part 3: Common Mistakes (Quick Trap Check)
+## Part 3: Common Misconception Traps
 
-| Area | Tempting Intuition | How It Backfires | Reliable Way |
+| Area | Tempting Mistake | How It Fails in Practice | Grounded Truth |
 |---|---|---|---|
-| Basics | `<Common wrong guess>` | `<Real mistake or failure>` | `<What actually works>` |
+| Basics | `<Common intuition trap>` | `<Real breakdown / misconception>` | `<Reliable principle from source>` |
 
 ---
 
@@ -143,40 +144,41 @@ def render_workbench(title: str, track: str) -> str:
 
 ---
 
-## Part 5: Honest Sign-Off Checklist
+## Part 5: Answer-Grounded Mock Simulation & Sign-Off
 
-- [ ] Can explain the Part 1 big picture in 60 seconds without notes.
-- [ ] Answered all Part 2 questions blind and cleared coach follow-ups.
-- [ ] Can spot every Part 3 common mistake immediately.
-- [ ] Passed Part 4 active sparring / coding test drill.
+- **Mock Simulation Brief**: {spec.mock_prompt}
+- [ ] Explained Part 1's big picture in 60 seconds without notes.
+- [ ] Unlocked and memorized all Part 2 verified standard answers.
+- [ ] Passed Part 4 applied drill.
+- [ ] Passed closed-book Mock Simulation using `answer_key.md` as the live rubric.
 """
 
 
 def render_answer_key(title: str, track: str) -> str:
     """Render a separated answer_key.md paired by Q-IDs to workbench.md."""
-    return f"""# {title} — Separated Answer Key (For Your AI Coach)
+    return f"""# {title} — Extracted Standard Answers & Mock Rubric
 
-> **Track**: `{track}`  
-> Keep closed while practicing `workbench.md`. Q-IDs (`Q1.1`, `Q1.2`, ...) match 1:1.
+> **Domain**: `{track}`  
+> Extracted from source material. Used by the AI coach to grade `workbench.md` and run Step 4 Mock Simulations.
 
 ---
 
 ### Q1.1 `<Repeat Q1.1 question>`
-- **Key Points (`3`)**:
-  1. **<Keyword 1>**: `<Plain explanation>`
-  2. **<Keyword 2>**: `<Plain explanation>`
-  3. **<Keyword 3>**: `<Plain explanation>`
-- **Follow-Up Prompts if Missed (Do NOT spoil directly)**:
-  - *If Point 1 is missing*: `"<Concrete scenario or question that nudges Point 1>"`
-  - *If Point 2 is missing*: `"<Concrete edge twist that nudges Point 2>"`
+- **Standard Answer Key Points (`3`)**:
+  1. **<Keyword 1>**: `<Concise grounded explanation>`
+  2. **<Keyword 2>**: `<Concise grounded explanation>`
+  3. **<Keyword 3>**: `<Concise grounded explanation>`
+- **Follow-Up Probes if Missed (Never spoil directly)**:
+  - *If Point 1 is missing*: `"<Scenario twist nudging Point 1>"`
+  - *If Point 2 is missing*: `"<Counterexample nudging Point 2>"`
 
 ### Q1.2 `<Repeat Q1.2 question>`
-- **Key Points (`3`)**:
-  1. **<Keyword 1>**: `<Plain explanation>`
-  2. **<Keyword 2>**: `<Plain explanation>`
-  3. **<Keyword 3>**: `<Plain explanation>`
-- **Follow-Up Prompts if Missed (Do NOT spoil directly)**:
-  - *If Point 1 is missing*: `"<Concrete twist>"`
+- **Standard Answer Key Points (`3`)**:
+  1. **<Keyword 1>**: `<Concise grounded explanation>`
+  2. **<Keyword 2>**: `<Concise grounded explanation>`
+  3. **<Keyword 3>**: `<Concise grounded explanation>`
+- **Follow-Up Probes if Missed (Never spoil directly)**:
+  - *If Point 1 is missing*: `"<Scenario twist>"`
 """
 
 
@@ -200,7 +202,7 @@ def validate_pair(target_dir: Path) -> tuple[bool, list[str]]:
         if part not in wb_text:
             errors.append(f"workbench.md missing required section: {part}")
 
-    for spoiler_marker in ("Key Points (", "Core Scoring Points"):
+    for spoiler_marker in ("Standard Answer Key Points", "Core Scoring Points", "Key Points ("):
         if spoiler_marker in wb_text:
             errors.append(f"Spoiler leak detected inside workbench.md: {spoiler_marker}")
 
@@ -222,21 +224,17 @@ def validate_pair(target_dir: Path) -> tuple[bool, list[str]]:
 def parse_args(argv: list[str]) -> argparse.Namespace:
     """Parse CLI arguments."""
     parser = argparse.ArgumentParser(
-        description="Scaffold or validate a Socratic Workbench (workbench.md + answer_key.md)."
+        description="Internal scaffolder & spoiler-check validator for workbench.md + answer_key.md."
     )
     parser.add_argument("--dir", required=True, help="Target study unit directory.")
-    parser.add_argument("--title", default="New Study Unit", help="Unit title.")
+    parser.add_argument("--title", default="New Study Material", help="Material or chapter title.")
     parser.add_argument(
         "--track",
         choices=sorted(TRACK_SPECS.keys()),
-        default="coding",
-        help="Learning track: english | textbook | coding | interview.",
+        default="textbook",
+        help="Material domain: textbook | coding | interview | language.",
     )
-    parser.add_argument(
-        "--force",
-        action="store_true",
-        help="Overwrite existing files if present.",
-    )
+    parser.add_argument("--force", action="store_true", help="Overwrite existing files if present.")
     parser.add_argument(
         "--check",
         action="store_true",
@@ -253,7 +251,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.check:
         ok, errors = validate_pair(target_dir)
         if ok:
-            print(f"OK: {target_dir} passed structure, anti-spoiler, and Q-ID checks.")
+            print(f"OK: {target_dir} passed structure, spoiler-lock, and Q-ID checks.")
             return 0
         for err in errors:
             print(f"ERROR: {err}", file=sys.stderr)

@@ -1,4 +1,4 @@
-"""Test suite for TokenBucketLimiter (runs against exercise.py by default; set TARGET_MODULE=solution to check reference)."""
+"""Test suite for TokenBucketLimiter (set TARGET_MODULE=solution to check reference)."""
 
 from __future__ import annotations
 

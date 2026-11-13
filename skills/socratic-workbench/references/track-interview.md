@@ -1,19 +1,12 @@
-# Track 4: Job Interviews & Exam Prep (`interview`)
+# Domain Guide: Exams, Certifications & Technical Interviews (`interview`)
 
-Use this track for technical interviews, system design rounds, certifications (AWS, CFA, CPA, bar/medical exams), or dense Q&A cramming.
+Use when the learner feeds in interview guides, exam syllabi (AWS, CPA, medical/bar prep), architecture review checklists, or dense Q&A handbooks.
 
-## Core Coaching Feel
-Flashcards trick you into thinking "oh yeah, I knew that" the second you peek. Keep every answer out of `workbench.md`, try rough keywords blind, and let the AI stress-test what you forgot with real failure or exam twist questions.
+## Vocabulary Adaptation
+Refer to items naturally as **scoring rubric points, edge twists, tradeoff defenses, and oral mock pressure**.
 
-## How the 5-Part Workbench Looks
-- **Part 1 — High-Yield Priorities & Topic Map**: Split "Must-know in interviews/exams" from "Nice background only", plus a quick system diagram.
-- **Part 2 — Categorized Blind Questions**: Every question shows `(N points)` with blank `> My Try:` and `> Coach Feedback & Final Note:` slots.
-- **Part 3 — Exam / Interview Traps Table**: `Topic | Classic Misconception | Why It Fails Under Probing | Exact Correct Answer`.
-- **Part 4 — Production Incident / Case Twist**: Present a tricky realistic symptom or exam vignette and ask the learner to diagnose root cause + one tradeoff.
-- **Part 5 — Rapid Recall Sign-Off**.
-
-## Grading Protocol
-1. Compare `> My Try:` against `answer_key.md`.
-2. Report exact hits (`Hits: 2 / 3 points`) and confirm what was right—**never list the missing point directly**.
-3. Pose a sharp incident twist or "what if X breaks?" question targeting the missing point.
-4. After the learner resolves it, write a clean **bold-keyword cheat-sheet summary** into `> Coach Feedback & Final Note:` so `workbench.md` turns into a razor-sharp review doc.
+## 4-Step Source-Driven Flow
+1. **Extract from the Prep Guide**: Cluster must-know topics, extract exact numbered **Standard Answers** (`answer_key.md`), and craft failure/exam twists for every scoring point.
+2. **Blind Workbook (`workbench.md`)**: Group questions by theme showing only `(N points)` and blank `> My Try:` lines, plus an incident/vignette diagnosis drill in Part 4.
+3. **Unlock for Memorization**: Grade rough keywords numerically (`Hits: 2 / 3`), throw incident follow-up twists for missed points, and once resolved lock crisp **bold-keyword Standard Answers to Memorize** into `workbench.md`.
+4. **Answer-Grounded Mock Simulation**: Act as a strict interviewer or oral examiner running closed-book rapid-fire follow-ups grounded in `answer_key.md`, catching vague hand-waving until every scoring point lands cleanly.

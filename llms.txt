@@ -1,24 +1,25 @@
 # AI Study Workbench (`socratic-workbench`)
 
-> A cross-agent AI study coach skill (`SKILL.md`) that turns ChatGPT, Claude Code, Antigravity, Codex, and Cursor into a spoiler-free human mentor for learning English, textbooks, coding, and exams.
+> **Source-Driven Active Learning** skill (`Blind-First Loop` + `Dual-File Spoiler Lock` + `Answer-Grounded Mock`) that turns any book, textbook, codebase, exam guide, or language resource into spoiler-free active practice, verified memorization, and live closed-book mock simulations.
 
-## What It Solves
-Standard AI tutors spoil answers immediately or silently patch bugs in code you barely understood. `socratic-workbench` keeps questions in a blind practice sheet (`workbench.md`), locks answers inside a separate rubric (`answer_key.md`), hides its own system prompt rules from the user, and coaches through realistic roleplay, counterexamples, and 4-step plain-language coding drills.
+## Core Signature Workflow
+1. **Material Ingest & Standard Answer Extraction (`answer_key.md`)**: Feed real books, docs, syllabi, or codebases in chat. The AI extracts grounded standard answers and misconception traps first—hidden from the learner.
+2. **Blind-First Practice (`workbench.md`)**: Learner practices blind `(N points)` recall or **4-Slot Plain-Language Coding** (`1:1` literal compilation with zero silent fixes) while the AI probes missed points using concrete counterexamples.
+3. **Unlock & Memorize**: Only after clearing probes and tests do concise bold-keyword standard answers unlock for fast retention.
+4. **Answer-Grounded Mock Simulation**: AI uses `answer_key.md` as its live rubric to run closed-book mock interviews, oral exams, case challenges, or situational dialogues.
 
-## Four Built-In Learning Tracks
-- **English & Foreign Languages (`english`)**: [track-english.md](skills/socratic-workbench/references/track-english.md) — Live roleplay sparring, error nudging without upfront sample translations, and natural phrasing upgrades.
-- **Textbooks & Any Course (`textbook`)**: [track-textbook.md](skills/socratic-workbench/references/track-textbook.md) — Chapter big picture, common misconception traps, and real-world concept checks before formulas.
-- **Coding & System Design (`coding`)**: [track-coding.md](skills/socratic-workbench/references/track-coding.md) — Write logic in 4 plain-language steps; AI compiles syntax 1:1 without silent fixes; real tests break blind spots; learn 1–2 clean idioms after passing.
-- **Exams & Interviews (`interview`)**: [track-interview.md](skills/socratic-workbench/references/track-interview.md) — Point-counted blind recall, incident twist probing, and concise bold-keyword review cards.
+## Repository Files
+- [Skill Specification](skills/socratic-workbench/SKILL.md): Main conversational workflow for `npx skills`, Antigravity, Claude Code, Codex.
+- [Internal Coach Rules](skills/socratic-workbench/references/coach-behavior.md): Invisible guardrails for consistent behavior across lightweight/Flash models.
+- [Books & Textbooks Track](skills/socratic-workbench/references/track-textbook.md)
+- [Code & System Design Track](skills/socratic-workbench/references/track-coding.md)
+- [Exams & Interviews Track](skills/socratic-workbench/references/track-interview.md)
+- [Foreign Language Materials Track](skills/socratic-workbench/references/track-language.md)
+- [Cursor Rule](adapters/cursor/socratic-workbench.mdc) & [Web Prompts](adapters/web-llm/system-prompt.en.md)
+- [Integrity Checker](skills/socratic-workbench/scripts/init_workbench.py): Optional `--check` script verifying zero spoiler leaks.
 
-## Install & Usage
-- **Agent Skill**: [SKILL.md](skills/socratic-workbench/SKILL.md) (compatible with `npx skills`, Antigravity `.agents/skills/`, Claude Code `.claude/skills/`, Codex)
-- **Cursor Rule**: [socratic-workbench.mdc](adapters/cursor/socratic-workbench.mdc)
-- **Web LLMs**: [English Prompt](adapters/web-llm/system-prompt.en.md) | [Chinese Prompt](adapters/web-llm/system-prompt.zh-CN.md)
-- **CLI Scaffolder & Checker**: [init_workbench.py](skills/socratic-workbench/scripts/init_workbench.py)
-
-## Showcase Examples
-- [English Workplace Sparring](examples/01-english-workplace-sparring/workbench.md)
-- [Economics Textbook: Supply, Demand & Price Caps](examples/02-textbook-supply-demand/workbench.md)
-- [Coding: Token Bucket Rate Limiter](examples/03-coding-token-bucket/workbench.md)
-- [Interview Prep: Database MVCC & Write Skew](examples/04-interview-mvcc/workbench.md)
+## Showcase Workbenches
+- [Textbook Example: Supply, Demand & Price Ceilings](examples/01-textbook-supply-demand/workbench.md)
+- [Coding Example: Token Bucket Rate Limiter](examples/02-coding-token-bucket/workbench.md)
+- [Interview Example: Database MVCC & Write Skew](examples/03-interview-mvcc/workbench.md)
+- [Language Book Example: Workplace Pushback](examples/04-language-workplace-pushback/workbench.md)

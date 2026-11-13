@@ -1,4 +1,4 @@
-"""Starter exercise stub for Track 3 showcase: Token Bucket Rate Limiter."""
+"""Starter exercise stub for Coding example: Token Bucket Rate Limiter."""
 
 from __future__ import annotations
 
@@ -23,7 +23,6 @@ class TokenBucketLimiter:
             raise ValueError("capacity and refill_rate must be positive")
         self.capacity = float(capacity)
         self.refill_rate = float(refill_rate)
-        # AI compiles Step 1 state structures here
 
     def allow(self, key: str, cost: float = 1.0, now: float | None = None) -> Decision:
         """Evaluate whether a request consuming `cost` tokens is allowed."""

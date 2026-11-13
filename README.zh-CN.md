@@ -2,121 +2,114 @@
 
 # AI Study Workbench (`socratic-workbench`)
 
-**别再让 AI 一上来就把答案糊你脸上。装上这个防剧透陪练技能，用 AI 学英语、啃课本、练编程、刷面试，都能像有个严格的真人教练在旁边带你练。**
+**把任何书本、课本、代码库或备考资料喂给 AI：先提炼标准答案、生成无剧透练习本带你盲练；练完解锁精炼答案去背诵；最后用这套标准答案直接做脱稿模拟实战。**
 
 [English](README.md) | [简体中文](README.zh-CN.md) | [Skill 核心规范](skills/socratic-workbench/SKILL.md)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![npx skills 兼容](https://img.shields.io/badge/npx%20skills-即装即用-6f42c1.svg)](skills/socratic-workbench/SKILL.md)
-[![四大陪练赛道](https://img.shields.io/badge/赛道-学英语%20%7C%20学课本%20%7C%20写代码%20%7C%20刷面试-0ea5e9.svg)](#四大陪练赛道看实际效果)
+[![资料驱动防剧透伴学](https://img.shields.io/badge/核心理念-资料驱动型防剧透伴学-0ea5e9.svg)](#怎么用四步资料驱动闭环)
 
 </div>
 
 ---
 
-## 为什么平时用 AI 学习总是“一看就会，一用就废”？
+## 这是什么？解决什么痛点？
 
-- **学英语**：让 AI 出场景练口语，它直接吐出一整篇地道范文，你看完觉得“太高级了”，转头开口还是憋不出一句。
-- **学课本/背面试题**：刚问一句“为什么会这样”，AI 把 1、2、3、4 点全列在眼前，你顺着点点头以为自己会了，上考场脑子一片空白。
-- **练代码/系统设计**：语法早就忘光，让 AI 带着写几行，它顺手把所有边界漏洞都帮你补齐了，跑通了你却根本不知道哪里最容易出 Bug。
+平时直接把课本、专业书或代码丢给 AI 总结，看着顺畅无比，结果一关掉文档全忘光。**AI Study Workbench（`socratic-workbench`）** 是一套**资料驱动型防剧透伴学（Source-Driven Active Learning）**技能：
+- **双文件防剧透锁（Dual-File Spoiler Lock）**：练习本 `workbench.md` 绝对不放答案；从你资料里抽出来的标准答案单独存进 `answer_key.md`。
+- **盲练先导闭环（Blind-First Loop）**：先让你写出关键词或四格大白话逻辑再批改，不提前剧透，漏点只用反例/故障追问。
+- **标准答案脱稿模拟（Answer-Grounded Mock）**：练完解锁精炼标准答案让你背完后，AI 直接拿着这批标准答案当“评分卡”，变身严格考官/面试官/现实对手做脱稿模拟。
 
-**AI Study Workbench（`socratic-workbench`）就干一件事**：把 AI 从“直接吐答案的作弊器”，变成**先让你试、不提前剧透、抓你漏洞反问你**的真人陪练教练——而且**绝不把提示词规则念出来打断你**，全程自然对话。
-
----
-
-## 装完你能拿到什么？能学到什么？
-
-1. **物理防剧透的双文件练习本**：
-   - 你看的文件叫 `workbench.md`：里面**只有重点导读、常见直觉坑、和只写着 `(共 3 个要点)` 的盲答空格**，怎么滑都不会不小心偷看到答案。
-   - 答案和评分触发器独立放在 `answer_key.md` 里，专门给 AI 教练悄悄对照批改。
-2. **四大实战陪练赛道（不限专业，学啥都能用）**：
-   - **赛道 1 · 学英语 / 外语实战陪练**：把你扔进真实对话（如跟客户砍需求、老外同事聊天），必须你先硬着头皮写出来/说出来；哪里硬邦邦的像中式英语，教练先反问你怎么改得更委婉，改对再给地道平替。
-   - **赛道 2 · 学课本 / 专业课通透理解**：先看“这一章到底解决啥问题”和大白话误区表，再做不带提示的概念题，用生活里的反例帮你把底层原理想通。
-   - **赛道 3 · 学写代码 / 系统设计（不用硬背语法）**：只需用中文填清楚四句话——**存什么、主步骤怎么走、边界怎么防、返回什么**。AI **1:1 老实翻译**成代码跑真实测试（绝不偷偷替你补边界 Bug），哪条测试挂了就拿那条失败数据反问你，全绿后再教 1~2 个高手简洁写法。
-   - **赛道 4 · 刷面试 / 考证突击**：只报“命中 2 / 3 个点”，绝对不直接告诉你漏了哪条；紧接着甩一个“线上真出事故了怎么兜底”的场景追问你，逼你自己想出来后再帮你收成黑体记忆卡。
-3. **换便宜/轻量模型（比如 Flash）也不偷懒**：配套防偷懒护栏，切小模型一样老老实实只批改不剧透。
+**平时怎么上手？不用记命令行参数！** 装好 Skill 后，直接把你想学的**书本章节、PDF/笔记、代码仓库、考纲或外语教材**发进对话里，跟 AI 正常聊天就行。
 
 ---
 
-## 四大陪练赛道：看实际对话效果
+## 怎么用？（四步资料驱动闭环）
 
-### 1. 学英语陪练：不说“给你十种地道说法”，而是直接对话挑刺
-> **场景**：国外老板周三突然要加两个功能，周五早上就要演示。  
-> **你先试着回**：*"No, I can't finish this by Friday. I have too much work."*  
-> **普通 AI**：*"很好！这里有 5 种更礼貌的说法：1. Actually, I'm afraid..."*（看两眼就忘）  
-> **本教练**：*"对方听完会觉得你在甩锅。目标先留着，把 'too much work' 换成具体要保的质量，再给一个下周二的分批方案，重写一遍试试？"*
-
-### 2. 学代码（忘光语法也能练设计）：写中文四步，AI 当编译器 + 测试裁判
-> **你写中文逻辑**：`按用户存剩多少令牌；每次请求按过去几秒补令牌，够扣就扣掉返回成功。`  
-> **本教练**：1:1 翻译进练习文件并跑单测，直接回复：  
-> *`当前通过 4 / 6 个测试。有个用户 2 小时没发请求，再来请求时算出来令牌暴涨到 14,405（上限只有 5）。你第三步“边界怎么防”要补哪条规则？`*  
-> *(全部通过后，才会拿出标准写法点拨一句：用 `min(capacity, ...)` 就行。)*
+1. **第一步：把真实资料喂给 AI，先抽出《标准答案库》(`answer_key.md`)**  
+   你发来一章专业课本、一本商业好书、一段工程代码或考试大纲。AI 先吃透资料，把核心考点、常见直觉误区和精炼**标准答案**抽出来存进 `answer_key.md`（先不给你看）。
+2. **第二步：在零剧透《练习本》(`workbench.md`) 里先盲练，漏点只反问**  
+   AI 按你的学科自动切换措辞生成 `workbench.md`：每道题只留 `(共 N 个要点)` 和空白 `My Try:`；编程设计题只需你填“存什么、主步骤、边界怎么防、返回什么”四句大白话。你答完后，AI 只报命中数（比如 `命中 2 / 3`），针对漏掉的点甩一个现实反例或失败测试输入逼你自己补齐——**全程绝不把内部规则念出来破坏沉浸感**。
+3. **第三步：练过关后解锁《标准答案》，直接拿去背诵**  
+   等你把追问想通、或代码单测全绿后，AI 才把精炼成**黑体关键词的标准答案**（代码题附带 1~2 个高手好写法）解锁写入练习本，让你清晰对照、快速背牢。
+4. **第四步：用这套标准答案做脱稿模拟实战（Mock Simulation）**  
+   背完后对 AI 说一句“开始第四步模拟实战”。AI 立刻拿刚才的 `answer_key.md` 当唯一评判标准，扮演严格的专业课口试考官、技术面试官或实战对话对象对你连续追问，直到你不看笔记也能脱口而出。
 
 ---
 
-## 30 秒快速安装
+## 学什么都能用（按你的资料自动换一套行话）
 
-### 方式 A：通过 `npx skills` 一键安装（推荐，支持 Antigravity / Claude Code / Codex）
+| 你喂给 AI 的资料 | 练习方式与陪练重点 | 最后的“解锁背诵 + 模拟实战” | 示例样板 |
+|---|---|---|---|
+| **课本 / 专业书 / 非虚构好书** | 抽核心机理、因果链与日常直觉误区；先用生活反例考你 | 解锁精炼核心论点去背诵 -> 模拟“抬杠评审/口试辩论” | [`01-textbook-supply-demand`](examples/01-textbook-supply-demand/workbench.md) |
+| **代码库 / 系统架构 / 算法题** | 忘光语法也能练：**写 4 句大白话** -> AI 1:1 死板翻译（绝不偷改 Bug）-> 跑真实单测暴露漏洞 | 全绿后学习 1~2 个地道写法 -> 模拟“高并发/故障架构评审” | [`02-coding-token-bucket`](examples/02-coding-token-bucket/workbench.md) |
+| **考证大纲 / 面试八股手册** | 按考点归类盲答（只写着 `共 N 个点`）+ 事故排查题 | 补齐漏洞后锁成黑体关键词记忆卡 -> 模拟“高压面试官连环追问” | [`03-interview-mvcc`](examples/03-interview-mvcc/workbench.md) |
+| **外语教材 / 商务沟通资料** | 不先给地道例句，先把你扔进书中场景让你硬着头皮写/说 | 自己改通后解锁地道表达去背诵 -> 模拟“连续多轮外语实战对话” | [`04-language-workplace-pushback`](examples/04-language-workplace-pushback/workbench.md) |
+
+---
+
+## 真实互动效果长什么样？
+
+### 场景 A：喂给 AI 一章《微观经济学》课本
+> **你试着答 Q1.1（限价为什么反而更租不到房）**：*“房租便宜了，穷人就都租得起了。”*  
+> **AI 教练**：*“命中了需求侧这 1 点（`1 / 3`）。换位想一下：如果你是开发商，政府规定房租砍掉 40%，你是继续盖出租房还是改盖写字楼？另外 1,000 个人抢 100 套便宜房时，房东怎么挑租客？”*  
+> *(等你想通补齐 -> AI 解锁 3 条黑体关键词标准答案让你背 -> 背完模拟“市政听证会辩论”。)*
+
+### 场景 B：忘光语法时用中文练代码设计（令牌桶限流）
+> **你用大白话写四步**：*“按用户存剩多少令牌；每次请求按过去几秒补令牌，够扣就减掉返回允许。”*  
+> **AI 教练**：1:1 老实翻译成代码跑测试，绝不替你补漏，直接返回：  
+> *`通过 4 / 6 个测试。输入 now=9999.0 时剩余令牌算成了 19980.0（上限只能是 5.0）。你第三步“边界怎么防”要补哪条规则？`*  
+> *(单测 100% 全绿后，解锁参考写法并模拟架构师压力追问。)*
+
+---
+
+## 30 秒装好，直接把资料发给 AI 开始练
+
+### 方式 1：Antigravity / Claude Code / Codex（标准 Skill，`npx skills` 兼容）
 
 ```bash
-# 托管到 GitHub 后，所有人可直接运行：
+# 推上 GitHub 后，任何人可直接一行安装：
 npx skills add <你的GitHub用户名>/ai-study-workbench
 
-# 如果已经克隆到本地，可直接本地安装：
+# 本地克隆后也可直接安装：
 npx skills add ./ai-study-workbench
 ```
 
-也可以直接复制到你的全局 Skills 目录：
+也可以直接复制技能文件夹到全局目录：
 
 ```bash
 cp -r ai-study-workbench/skills/socratic-workbench ~/.agents/skills/
-# 如用 Claude Code，可同步到 ~/.claude/skills/
 ```
 
-装好后直接对 AI 说一句就行：
-> **“用 `socratic-workbench` 帮我防剧透陪练：我要练习 [职场英语拒绝需求 / 经济学供需关系 / 限流器代码设计 / 数据库面试题]。”**
+装好后无需任何额外命令，直接对 AI 说：
+> **“用 `socratic-workbench` 帮我学这份资料（课本/文档/代码库/考纲）：先抽标准答案、出防剧透练习本带我练，练完解锁标准答案给我背，最后用标准答案跟我脱稿模拟。”**
 
-### 方式 B：Cursor 用户
-把 [`adapters/cursor/socratic-workbench.mdc`](adapters/cursor/socratic-workbench.mdc) 放进项目的 `.cursor/rules/` 即可自动生效。
+### 方式 2：Cursor 用户
+把 [`adapters/cursor/socratic-workbench.mdc`](adapters/cursor/socratic-workbench.mdc) 放进项目的 `.cursor/rules/` 即可。
 
-### 方式 C：网页端 ChatGPT / Claude / Gemini / DeepSeek 用户（零配置）
-直接把 [`adapters/web-llm/system-prompt.zh-CN.md`](adapters/web-llm/system-prompt.zh-CN.md) 里的整段文字复制粘贴到新对话开头，或放进 Custom Instructions / Gem 里就能用。
-
----
-
-## 仓库内置样板文件（一眼看清格式）
-
-| 赛道 | 示例主题 | 直接点开看 |
-|---|---|---|
-| **英语陪练** | 职场英文：委婉拒绝不合理排期 | [`workbench.md`](examples/01-english-workplace-sparring/workbench.md) · [`answer_key.md`](examples/01-english-workplace-sparring/answer_key.md) |
-| **学课本** | 经济学：房租限价为什么反而更租不到房？ | [`workbench.md`](examples/02-textbook-supply-demand/workbench.md) · [`answer_key.md`](examples/02-textbook-supply-demand/answer_key.md) |
-| **学写代码** | 令牌桶限流器（写中文逻辑 -> 跑真实单测） | [`workbench.md`](examples/03-coding-token-bucket/workbench.md) · [`test_exercise.py`](examples/03-coding-token-bucket/test_exercise.py) |
-| **刷面试** | 数据库 MVCC 与 Write Skew 写偏斜 | [`workbench.md`](examples/04-interview-mvcc/workbench.md) · [`answer_key.md`](examples/04-interview-mvcc/answer_key.md) |
+### 方式 3：只用 ChatGPT / Claude / Gemini 网页聊天？
+把 [`adapters/web-llm/system-prompt.zh-CN.md`](adapters/web-llm/system-prompt.zh-CN.md) 复制到新对话开头（或放进 Custom Instructions / Gem），再贴入你的课本或资料就能直接进入四步伴学。
 
 ---
 
-## 附带命令行小工具：一键生成新课程盲答本
+## 自带防剧透校验小工具（可选）
+
+如果你改写了某个练习本，可以顺手跑一下内置脚本检查是否把答案误写进了 `workbench.md`：
 
 ```bash
-# 支持 4 种赛道：english | textbook | coding | interview
-python3 skills/socratic-workbench/scripts/init_workbench.py \
-  --dir ./my-study-unit \
-  --title "商务英语谈判" \
-  --track english
-
-# 自动检查是否把答案写漏进了 workbench.md
-python3 skills/socratic-workbench/scripts/init_workbench.py --dir ./my-study-unit --check
+python3 skills/socratic-workbench/scripts/init_workbench.py --dir examples/01-textbook-supply-demand --check
 ```
 
 ---
 
 ## 常见问题
 
-**1. 为什么专门加了 `answer_key.md` 分离文件？**  
-因为只要答案在同一个文件里（哪怕折叠了），你自己也会忍不住点开，AI 读上下文时也更容易顺嘴剧透。拆成两个文件，彻底断掉作弊和剧透的可能。
+**1. 题目和标准答案是 AI 瞎编的，还是严格基于我的书/资料？**  
+严格基于你提供的资料。第一步会先把书本/代码/考纲里的核心原理和标准答案抽出来锁进 `answer_key.md`，后面的批改、背诵和第四步模拟考全部以它为准。
 
-**2. AI 会不会老把“根据规则一我不能告诉你”这种提示词念出来？**  
-不会。技能内部已经规定教练必须把规则藏在后台，全程用真人家教/面试官/外国同事的口吻自然跟你互动。
+**2. 换用便宜的小模型（比如 Flash 模型）会直接泄题吗？**  
+通过把答案物理隔离在 `answer_key.md`，加上 [`coach-behavior.md`](skills/socratic-workbench/references/coach-behavior.md) 里的硬性计数与禁夸赞约束，轻量模型也能稳稳执行先练后背、不提前剧透。
 
 **3. 开源协议？**  
-[MIT License](LICENSE)，欢迎 Star、Fork 或改造成你自己的学科练习库。
+[MIT License](LICENSE)。大模型索引地图：[`llms.txt`](llms.txt)。
