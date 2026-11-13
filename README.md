@@ -27,6 +27,8 @@ Most people use AI as a passive textbook summary generator—and immediately for
 
 ## How It Works (4-Step Source-Driven Loop)
 
+![Source-Driven Active Learning 4-Step Loop](assets/workflow-en.svg)
+
 1. **Give AI Real Material -> Extract Standard Answers (`answer_key.md`)**  
    Share your book chapter, notes, documentation, or code repo. The AI silently pulls out the core principles, common misconception traps, and crisp numbered **Standard Answers**—kept out of sight inside `answer_key.md`.
 2. **Practice in Your Blind Workbook (`workbench.md`)**  

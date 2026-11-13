@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 250" width="960" height="250" role="img" aria-label="AI Study Workbench 4-Step Source-Driven Active Learning Loop">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eff6ff"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- Outer card (safe on both GitHub light & dark modes) -->
+  <rect x="4" y="4" width="952" height="242" rx="16" fill="url(#bgGrad)" stroke="#cbd5e1" stroke-width="1.5"/>
+
+  <text x="480" y="34" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="16" font-weight="700" fill="#0f172a">
+    Source-Driven Active Learning Loop (socratic-workbench)
+  </text>
+
+  <!-- Step 1 -->
+  <rect x="24" y="58" width="202" height="164" rx="12" fill="#ffffff" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="24" y="58" width="202" height="32" rx="12" fill="#dbeafe"/>
+  <rect x="24" y="78" width="202" height="12" fill="#dbeafe"/>
+  <text x="125" y="79" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#1e40af">1. Feed Real Material</text>
+  <text x="125" y="114" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="12" font-weight="600" fill="#1e293b">Book / Code / Exam / Guide</text>
+  <text x="125" y="138" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="11.5" fill="#475569">AI extracts key concepts</text>
+  <text x="125" y="156" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="11.5" fill="#475569">into a separate hidden key:</text>
+  <rect x="52" y="172" width="146" height="28" rx="6" fill="#eff6ff" stroke="#93c5fd" stroke-width="1"/>
+  <text x="125" y="190" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11.5" font-weight="600" fill="#1d4ed8">answer_key.md (Locked)</text>
+
+  <!-- Arrow 1->2 -->
+  <line x1="226" y1="140" x2="254" y2="140" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 2 -->
+  <rect x="260" y="58" width="202" height="164" rx="12" fill="#ffffff" stroke="#0ea5e9" stroke-width="2"/>
+  <rect x="260" y="58" width="202" height="32" rx="12" fill="#e0f2fe"/>
+  <rect x="260" y="78" width="202" height="12" fill="#e0f2fe"/>
+  <text x="361" y="79" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#0369a1">2. Blind-First Practice</text>
+  <text x="361" y="114" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="12" font-weight="600" fill="#1e293b">Try Without Spoilers</text>
+  <text x="361" y="138" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="11.5" fill="#475569">Blind (N points) Q&amp;A or</text>
+  <text x="361" y="156" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="11.5" fill="#475569">4-step plain logic -> real tests</text>
+  <rect x="288" y="172" width="146" height="28" rx="6" fill="#f0f9ff" stroke="#7dd3fc" stroke-width="1"/>
+  <text x="361" y="190" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11.5" font-weight="600" fill="#0369a1">workbench.md (No Hints)</text>
+
+  <!-- Arrow 2->3 -->
+  <line x1="462" y1="140" x2="490" y2="140" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 3 -->
+  <rect x="496" y="58" width="202" height="164" rx="12" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
+  <rect x="496" y="58" width="202" height="32" rx="12" fill="#d1fae5"/>
+  <rect x="496" y="78" width="202" height="12" fill="#d1fae5"/>
+  <text x="597" y="79" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#047857">3. Unlock &amp; Memorize</text>
+  <text x="597" y="114" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="12" font-weight="600" fill="#1e293b">After Probes / Tests Pass</text>
+  <text x="597" y="138" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="11.5" fill="#475569">AI unlocks bold-keyword</text>
+  <text x="597" y="156" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="11.5" fill="#475569">Standard Answers &amp; idioms</text>
+  <rect x="520" y="172" width="154" height="28" rx="6" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1"/>
+  <text x="597" y="190" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="11.5" font-weight="600" fill="#047857">Lock Into Long-Term Memory</text>
+
+  <!-- Arrow 3->4 -->
+  <line x1="698" y1="140" x2="726" y2="140" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 4 -->
+  <rect x="732" y="58" width="204" height="164" rx="12" fill="#ffffff" stroke="#8b5cf6" stroke-width="2"/>
+  <rect x="732" y="58" width="204" height="32" rx="12" fill="#ede9fe"/>
+  <rect x="732" y="78" width="204" height="12" fill="#ede9fe"/>
+  <text x="834" y="79" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#5b21b6">4. Answer-Grounded Mock</text>
+  <text x="834" y="114" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="12" font-weight="600" fill="#1e293b">Closed-Book Simulation</text>
+  <text x="834" y="138" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="11.5" fill="#475569">Strict examiner / interviewer</text>
+  <text x="834" y="156" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="11.5" fill="#475569">grades via answer_key.md</text>
+  <rect x="756" y="172" width="156" height="28" rx="6" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="834" y="190" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="11.5" font-weight="600" fill="#5b21b6">Proven Recall Under Pressure</text>
+</svg>
