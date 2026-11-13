@@ -1,4 +1,4 @@
-"""Starter exercise stub for Track A showcase: Token Bucket Rate Limiter."""
+"""Starter exercise stub for Track 3 showcase: Token Bucket Rate Limiter."""
 
 from __future__ import annotations
 
@@ -23,9 +23,9 @@ class TokenBucketLimiter:
             raise ValueError("capacity and refill_rate must be positive")
         self.capacity = float(capacity)
         self.refill_rate = float(refill_rate)
-        # Learners/AI compile Slot 1 state structures below:
+        # AI compiles Step 1 state structures here
 
     def allow(self, key: str, cost: float = 1.0, now: float | None = None) -> Decision:
-        """Evaluate whether a request for `key` consuming `cost` tokens is allowed."""
+        """Evaluate whether a request consuming `cost` tokens is allowed."""
         _ = now if now is not None else time.monotonic()
-        raise NotImplementedError("Compile your 4-slot pseudocode from workbench.md here.")
+        raise NotImplementedError("Write your 4 plain-language steps in workbench.md first.")

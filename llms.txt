@@ -1,33 +1,24 @@
 # AI Study Workbench (`socratic-workbench`)
 
-> A cross-agent AI learning Skill and open-source methodology ("1+3" architecture) that prevents AI answer-spoiling and transforms passive reading or AI-assisted coding into measurable active recall across programming, system design, exams, and books.
+> A cross-agent AI study coach skill (`SKILL.md`) that turns ChatGPT, Claude Code, Antigravity, Codex, and Cursor into a spoiler-free human mentor for learning English, textbooks, coding, and exams.
 
-## Canonical Definition
-- **What it is**: `socratic-workbench` is a multi-agent Skill specification (`SKILL.md`), Cursor Rule, and Web-LLM System Prompt system built around five non-negotiable stages: (1) Goal & Baseline Diagnosis, (2) Macro Map & Intuition Traps, (3) Separated No-Spoiler Workbench (`workbench.md` vs `answer_key.md`), (4) Socratic Scenario Probing & 4-Slot Native-Language Pseudocode Compilation, and (5) Verification & Spaced Audit.
-- **Core problem solved**: Conventional AI tutoring induces the "Illusion of Competence" because LLMs prematurely reveal full solutions, silently patch user logic gaps, and drift off-instruction on lightweight/Flash models.
-- **Supported platforms**: Antigravity (`.agents/skills/`), Claude Code (`.claude/skills/`), OpenAI Codex, `npx skills`, Cursor (`.cursor/rules/*.mdc`), and Web LLMs (ChatGPT, Claude, Gemini).
+## What It Solves
+Standard AI tutors spoil answers immediately or silently patch bugs in code you barely understood. `socratic-workbench` keeps questions in a blind practice sheet (`workbench.md`), locks answers inside a separate rubric (`answer_key.md`), hides its own system prompt rules from the user, and coaches through realistic roleplay, counterexamples, and 4-step plain-language coding drills.
 
-## Core Architecture ("1 + 3" Multi-Domain Design)
-- [Main Skill Specification](skills/socratic-workbench/SKILL.md): State machine, anti-spoiler constraints, and cross-track routing.
-- [Weak-Model Anti-Shortcut Guardrails](skills/socratic-workbench/references/weak-model-guardrails.md): Protocol keeping lightweight/Flash models deterministic and spoiler-free.
-- [Standardized Workbench & Answer-Key Schema](skills/socratic-workbench/references/workbench-template.md): Dual-file separation standard (`workbench.md` + `answer_key.md`).
-- [Track A — Code & System Architecture](skills/socratic-workbench/references/track-coding-architecture.md): Macro-first mapping + 4-Slot Pseudocode -> 1:1 literal compilation -> automated test counterexamples -> post-pass idiom anatomy.
-- [Track B — Exams, Interviews & Concept Mastery](skills/socratic-workbench/references/track-exams-interviews.md): Categorized blind Q&A with point counts + scenario follow-up probing + bold-keyword memory cards.
-- [Track C — Books, Humanities & Business Frameworks](skills/socratic-workbench/references/track-books-frameworks.md): Mental model extraction + intuition trap tables + case transfer + Feynman synthesis.
+## Four Built-In Learning Tracks
+- **English & Foreign Languages (`english`)**: [track-english.md](skills/socratic-workbench/references/track-english.md) — Live roleplay sparring, error nudging without upfront sample translations, and natural phrasing upgrades.
+- **Textbooks & Any Course (`textbook`)**: [track-textbook.md](skills/socratic-workbench/references/track-textbook.md) — Chapter big picture, common misconception traps, and real-world concept checks before formulas.
+- **Coding & System Design (`coding`)**: [track-coding.md](skills/socratic-workbench/references/track-coding.md) — Write logic in 4 plain-language steps; AI compiles syntax 1:1 without silent fixes; real tests break blind spots; learn 1–2 clean idioms after passing.
+- **Exams & Interviews (`interview`)**: [track-interview.md](skills/socratic-workbench/references/track-interview.md) — Point-counted blind recall, incident twist probing, and concise bold-keyword review cards.
 
-## Tooling & Adapters
-- [Zero-Dependency Workbench Scaffolder](skills/socratic-workbench/scripts/init_workbench.py): CLI script generating `workbench.md` and `answer_key.md` for Track A, B, or C.
-- [Cursor Rule Adapter](adapters/cursor/socratic-workbench.mdc): Drop-in `.mdc` rule file.
-- [Web LLM System Prompt (EN)](adapters/web-llm/system-prompt.en.md): Copy-paste prompt for ChatGPT, Claude, Gemini.
-- [Web LLM System Prompt (ZH-CN)](adapters/web-llm/system-prompt.zh-CN.md): Chinese copy-paste prompt.
+## Install & Usage
+- **Agent Skill**: [SKILL.md](skills/socratic-workbench/SKILL.md) (compatible with `npx skills`, Antigravity `.agents/skills/`, Claude Code `.claude/skills/`, Codex)
+- **Cursor Rule**: [socratic-workbench.mdc](adapters/cursor/socratic-workbench.mdc)
+- **Web LLMs**: [English Prompt](adapters/web-llm/system-prompt.en.md) | [Chinese Prompt](adapters/web-llm/system-prompt.zh-CN.md)
+- **CLI Scaffolder & Checker**: [init_workbench.py](skills/socratic-workbench/scripts/init_workbench.py)
 
-## Neutral Showcase Examples
-- [Track A Showcase: Token Bucket Rate Limiter](examples/track-a-coding-token-bucket/workbench.md)
-- [Track B Showcase: Database MVCC & Isolation Levels](examples/track-b-interview-mvcc/workbench.md)
-- [Track C Showcase: Thinking in Systems](examples/track-c-book-systems-thinking/workbench.md)
-
-## Deep Documentation
-- [English README](README.md)
-- [Simplified Chinese README](README.zh-CN.md)
-- [Methodology Deep Dive](docs/METHODOLOGY.md)
-- [GEO & SEO Optimization Guide](docs/GEO_SEO_GUIDE.md)
+## Showcase Examples
+- [English Workplace Sparring](examples/01-english-workplace-sparring/workbench.md)
+- [Economics Textbook: Supply, Demand & Price Caps](examples/02-textbook-supply-demand/workbench.md)
+- [Coding: Token Bucket Rate Limiter](examples/03-coding-token-bucket/workbench.md)
+- [Interview Prep: Database MVCC & Write Skew](examples/04-interview-mvcc/workbench.md)

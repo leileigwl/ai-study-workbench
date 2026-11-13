@@ -1,4 +1,4 @@
-"""Clean reference implementation for post-pass idiom anatomy (Track A)."""
+"""Clean reference implementation shown only AFTER all tests pass."""
 
 from __future__ import annotations
 
@@ -32,7 +32,7 @@ class TokenBucketLimiter:
         self._buckets: dict[str, _BucketState] = {}
 
     def allow(self, key: str, cost: float = 1.0, now: float | None = None) -> Decision:
-        """Evaluate whether a request for `key` consuming `cost` tokens is allowed."""
+        """Evaluate whether a request consuming `cost` tokens is allowed."""
         if cost <= 0:
             raise ValueError("cost must be positive")
 
@@ -46,7 +46,7 @@ class TokenBucketLimiter:
             state.tokens = min(self.capacity, state.tokens + elapsed * self.refill_rate)
             state.last_ts = ts
 
-        if cost > self.capacity:
+        if cost > self.capacity or state.tokens < cost:
             deficit = cost - state.tokens
             return Decision(
                 allowed=False,
@@ -54,13 +54,5 @@ class TokenBucketLimiter:
                 retry_after=deficit / self.refill_rate,
             )
 
-        if state.tokens >= cost:
-            state.tokens -= cost
-            return Decision(allowed=True, remaining_tokens=state.tokens, retry_after=0.0)
-
-        deficit = cost - state.tokens
-        return Decision(
-            allowed=False,
-            remaining_tokens=state.tokens,
-            retry_after=deficit / self.refill_rate,
-        )
+        state.tokens -= cost
+        return Decision(allowed=True, remaining_tokens=state.tokens, retry_after=0.0)

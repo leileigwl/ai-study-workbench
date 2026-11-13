@@ -1,4 +1,4 @@
-"""Deterministic test suite for TokenBucketLimiter (set TARGET_MODULE=solution to verify reference)."""
+"""Test suite for TokenBucketLimiter (runs against exercise.py by default; set TARGET_MODULE=solution to check reference)."""
 
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ TokenBucketLimiter = mod.TokenBucketLimiter
 
 
 class TestTokenBucketLimiter(unittest.TestCase):
-    """Covers lazy refill, burst clamping, partial deficit retry_after, backward clock, and key isolation."""
+    """Covers lazy refill, burst cap, retry_after deficit, backward clock, and key isolation."""
 
     def test_first_request_starts_full_and_consumes(self) -> None:
         limiter = TokenBucketLimiter(capacity=5.0, refill_rate=2.0)
@@ -24,7 +24,7 @@ class TestTokenBucketLimiter(unittest.TestCase):
         self.assertAlmostEqual(res.remaining_tokens, 2.0)
         self.assertAlmostEqual(res.retry_after, 0.0)
 
-    def test_reject_computes_exact_retry_after_without_draining_tokens(self) -> None:
+    def test_reject_computes_exact_retry_after(self) -> None:
         limiter = TokenBucketLimiter(capacity=5.0, refill_rate=2.0)
         limiter.allow("alice", cost=3.0, now=10.0)
         res = limiter.allow("alice", cost=4.0, now=10.5)
@@ -32,14 +32,14 @@ class TestTokenBucketLimiter(unittest.TestCase):
         self.assertAlmostEqual(res.remaining_tokens, 3.0)
         self.assertAlmostEqual(res.retry_after, 0.5)
 
-    def test_idle_refill_never_exceeds_capacity(self) -> None:
+    def test_idle_refill_clamped_to_capacity(self) -> None:
         limiter = TokenBucketLimiter(capacity=5.0, refill_rate=2.0)
         limiter.allow("alice", cost=4.0, now=10.0)
         res = limiter.allow("alice", cost=1.0, now=9999.0)
         self.assertTrue(res.allowed)
         self.assertAlmostEqual(res.remaining_tokens, 4.0)
 
-    def test_backward_clock_tick_is_clamped_safe(self) -> None:
+    def test_backward_clock_tick_is_safe(self) -> None:
         limiter = TokenBucketLimiter(capacity=5.0, refill_rate=2.0)
         limiter.allow("alice", cost=2.0, now=20.0)
         res = limiter.allow("alice", cost=1.0, now=15.0)

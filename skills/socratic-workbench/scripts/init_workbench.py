@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Zero-dependency CLI scaffolder & validator for Socratic Study Workbenches."""
+"""Zero-dependency CLI scaffolder & anti-spoiler checker for Socratic Study Workbenches."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ from pathlib import Path
 
 @dataclass(frozen=True)
 class TrackSpec:
-    """Track-specific metadata and Part 4 template blocks."""
+    """Track metadata and Part 4 sparring/drill template."""
 
     label: str
     goal_hint: str
@@ -21,13 +21,40 @@ class TrackSpec:
 
 
 TRACK_SPECS: dict[str, TrackSpec] = {
+    "english": TrackSpec(
+        label="english",
+        goal_hint="Real-life speaking/writing sparring — produce first, get coached naturally, upgrade phrasing",
+        part4_heading="Part 4: Live Roleplay Sparring",
+        part4_body="""### Roleplay 4.1: Realistic Scenario
+> **Setting**: `<Describe the real situation, e.g. client pushback, coffee chat, salary discussion>`
+> **Your Role**: `<Who you are playing>` | **Coach Role**: `<Who pushes back>`
+
+- **Coach Opening Line**: `"<Realistic question or pushback>"`
+- **Your First Reply (Write naturally before looking anything up)**: 
+- **Coach Follow-Up & Upgraded Phrasing**: *(Coach responds in character, probes gaps, then gives natural upgrades)*
+""",
+    ),
+    "textbook": TrackSpec(
+        label="textbook",
+        goal_hint="Understand why a chapter works, catch naive intuition traps, and solve real cases without peeking",
+        part4_heading="Part 4: Real-World Case & Problem Walkthrough",
+        part4_body="""### Case 4.1: Everyday or Homework Scenario
+> **Problem**: `<Describe a concrete real-life situation or textbook exercise before giving formulas>`
+
+1. **Which core rule/mechanism applies here (in your own words)?**
+   - 
+2. **Walk through your prediction or calculation:**
+   - 
+3. **Coach Check & Edge Twist**: *(Completed during interactive review)*
+""",
+    ),
     "coding": TrackSpec(
         label="coding",
-        goal_hint="System design ownership & deterministic test verification without memorizing raw syntax",
-        part4_heading="Part 4: Active Production Drill — 4-Slot Pseudocode Compilation",
+        goal_hint="Own 100% of the logic & edge cases in plain language; let AI compile syntax literally + run tests",
+        part4_heading="Part 4: Plain-Language Code Drill (4-Step Logic -> Real Tests)",
         part4_body="""### Drill 4.1: `<function_or_component_name>`
 
-#### Input / Output Examples (Plain Data)
+#### Input / Output Examples
 ```json
 {
   "input": {"example_param": "value"},
@@ -35,98 +62,78 @@ TRACK_SPECS: dict[str, TrackSpec] = {
 }
 ```
 
-#### Stripped Interface Contract
+#### Already Handled For You (Ignore Boilerplate)
 - Signature: `solve(arg) -> Result`
-- Provided types / invariants: `<Document exact fields so the learner focuses 100% on logic>`
+- Available fields: `<List exact fields/types so you focus only on logic>`
 
-#### 4-Slot Native-Language Pseudocode (Do NOT write target-language boilerplate)
-- **Slot 1 — State & Containers**: 
-- **Slot 2 — Core Step / Transition**: 
-- **Slot 3 — Boundary & Error Guards**: 
-- **Slot 4 — Return / Side-Effect Contract**: 
+#### Your 4 Plain-Language Steps (Chinese or English — NO need to write raw syntax)
+1. **What to store**: 
+2. **Main step / loop**: 
+3. **Edge cases to guard**: 
+4. **What to return**: 
 """,
     ),
     "interview": TrackSpec(
         label="interview",
-        goal_hint="Rapid interview/exam active recall + production failure diagnosis under stress",
-        part4_heading="Part 4: Active Production Drill — Incident Root-Cause & Tradeoff Diagnosis",
-        part4_body="""### Case 4.1: Production Incident / Exam Vignette
-> **Scenario**: `<Describe a realistic failure symptom, latency spike, data anomaly, or exam vignette>`
+        goal_hint="Blind recall with point counts, scenario stress-testing, and concise keyword memory cards",
+        part4_heading="Part 4: Realistic Failure / Exam Twist Case",
+        part4_body="""### Case 4.1: Production Incident or Exam Vignette
+> **Scenario**: `<Describe a tricky failure symptom, tradeoff dilemma, or multi-part exam question>`
 
-- **Root Cause Hypothesis**: 
-- **Immediate Mitigation vs Structural Fix**: 
-- **Key Tradeoff Accepted**: 
-""",
-    ),
-    "book": TrackSpec(
-        label="book",
-        goal_hint="Mental model extraction, intuition-trap immunity & real-world case transfer",
-        part4_heading="Part 4: Active Production Drill — Cross-Context Case Transfer & Feynman Teach-Back",
-        part4_body="""### Transfer 4.1: Apply the Core Model Outside the Author's Examples
-> **Unfamiliar Scenario**: `<Describe a workplace, product, policy, or personal decision dilemma>`
-
-1. **Structural Diagnosis (Name the mechanism / causal loop, not surface symptoms)**:
-   - 
-2. **Boundary / Second-Order Risk (Where could this framework backfire here?)**:
-   - 
-3. **60-Second Feynman Teach-Back (Explain cleanly to a peer with zero jargon)**:
-   - 
+- **Your Root-Cause Diagnosis**: 
+- **Fix + One Tradeoff**: 
 """,
     ),
 }
 
 
 def render_workbench(title: str, track: str) -> str:
-    """Render a spoiler-free 5-part workbench.md document for the given track."""
+    """Render a clean, spoiler-free 5-part workbench.md for the chosen track."""
     spec = TRACK_SPECS[track]
     return f"""# {title} — Active Study Workbench
 
 > **Track**: `{spec.label}`  
-> **Goal**: {spec.goal_hint}  
-> **Spoiler Rule**: Attempt every draft below *before* consulting `answer_key.md`.
+> **What you'll master**: {spec.goal_hint}  
+> **Rule**: Try every section below on your own *before* opening `answer_key.md`.
 
 ---
 
-## Part 1: Focus Guide & Macro Map
+## Part 1: What Matters Most & Big Picture
 
-### 1.1 Priority Reading Guide
-- **Core (High-Yield / Must Master)**:
-  - `<Primary mechanism or chapter>`
-- **Extended (Context Only)**:
-  - `<Secondary implementation details>`
+### 1.1 Priority Guide
+- **Must Master**:
+  - `<Core idea or skill 1>`
+- **Good Context (Don't over-memorize)**:
+  - `<Supporting detail>`
 
-### 1.2 Macro Integration & Dependency Map
-- **Upstream Inputs**: `<What triggers or feeds this unit?>`
-- **Core Responsibility**: `<What invariant or decision does this unit own?>`
-- **Downstream Consumers / Effects**: `<What breaks downstream if this unit fails?>`
-
+### 1.2 How It All Connects
 ```text
-[Upstream] ---> [{title}] ---> [Downstream]
+[Trigger / Input] ---> [{title}] ---> [Outcome / Next Step]
 ```
 
 ---
 
-## Part 2: Categorized Blind Retrieval Q&A (Draft -> Scenario Probe -> Audit)
+## Part 2: Blind Check Questions (Try First -> Follow-Up -> Final Note)
 
-> Write concise keywords under `> **My Draft**:`. Send to your AI coach for point-count scoring and scenario follow-ups.
+> Jot rough keywords under `> **My Try**:` and send to your AI coach. Don't peek at `answer_key.md`.
 
-### Category A: Core Mechanisms & Invariants
+### Topic A: Core Ideas
 
-#### Q1.1 `<Replace with core why/how question>` (`3` core points)
-- > **My Draft**: 
-- > **Follow-up & Audited Answer**: *(Locked until blind draft + scenario probe are completed)*
+#### Q1.1 `<Question in plain language>` (`3` points)
+- > **My Try**: 
+- > **Coach Feedback & Final Note**: *(Unlocked after your try + follow-up)*
 
-#### Q1.2 `<Replace with failure-boundary or tradeoff question>` (`3` core points)
-- > **My Draft**: 
-- > **Follow-up & Audited Answer**: *(Locked until blind draft + scenario probe are completed)*
+#### Q1.2 `<Boundary / "What happens if..." question>` (`3` points)
+- > **My Try**: 
+- > **Coach Feedback & Final Note**: *(Unlocked after your try + follow-up)*
 
 ---
 
-## Part 3: Intuition Traps & Anti-Patterns
+## Part 3: Common Mistakes (Quick Trap Check)
 
-| Category | Intuition Trap | Real-World / Exam Failure Mode | Reliable Principle |
+| Area | Tempting Intuition | How It Backfires | Reliable Way |
 |---|---|---|---|
-| Core Logic | `<What beginners intuitively guess>` | `<Exact symptom when it fails>` | `<Durable rule or architecture pattern>` |
+| Basics | `<Common wrong guess>` | `<Real mistake or failure>` | `<What actually works>` |
 
 ---
 
@@ -136,45 +143,45 @@ def render_workbench(title: str, track: str) -> str:
 
 ---
 
-## Part 5: Unit Sign-Off Checklist
+## Part 5: Honest Sign-Off Checklist
 
-- [ ] Can explain Part 1's macro map in 60 seconds without notes.
-- [ ] Resolved all Part 2 blind Q&As including scenario follow-up probes.
-- [ ] Can spot every Part 3 intuition trap when shown a flawed design.
-- [ ] Passed Part 4 active drill verification.
+- [ ] Can explain the Part 1 big picture in 60 seconds without notes.
+- [ ] Answered all Part 2 questions blind and cleared coach follow-ups.
+- [ ] Can spot every Part 3 common mistake immediately.
+- [ ] Passed Part 4 active sparring / coding test drill.
 """
 
 
 def render_answer_key(title: str, track: str) -> str:
-    """Render a separated answer_key.md matched by Q-IDs to workbench.md."""
-    return f"""# {title} — Separated Answer Key (AI Grading Rubric)
+    """Render a separated answer_key.md paired by Q-IDs to workbench.md."""
+    return f"""# {title} — Separated Answer Key (For Your AI Coach)
 
 > **Track**: `{track}`  
-> **Spoiler Guard**: Keep closed while drafting `workbench.md`. Use matched Q-IDs (`Q1.1`, `Q1.2`, ...) during grading.
+> Keep closed while practicing `workbench.md`. Q-IDs (`Q1.1`, `Q1.2`, ...) match 1:1.
 
 ---
 
-### Q1.1 `<Repeat Q1.1 text>`
-- **Core Scoring Points (`3`)**:
-  1. **<Keyword Anchor 1>**: `<Explanation>`
-  2. **<Keyword Anchor 2>**: `<Explanation>`
-  3. **<Keyword Anchor 3>**: `<Explanation>`
-- **Scenario Probes (Use if a point is missed — do NOT spoil directly)**:
-  - *Missing Point 1*: `"<Concrete failure scenario forcing discovery of Point 1>"`
-  - *Missing Point 2*: `"<Edge-case scenario forcing discovery of Point 2>"`
+### Q1.1 `<Repeat Q1.1 question>`
+- **Key Points (`3`)**:
+  1. **<Keyword 1>**: `<Plain explanation>`
+  2. **<Keyword 2>**: `<Plain explanation>`
+  3. **<Keyword 3>**: `<Plain explanation>`
+- **Follow-Up Prompts if Missed (Do NOT spoil directly)**:
+  - *If Point 1 is missing*: `"<Concrete scenario or question that nudges Point 1>"`
+  - *If Point 2 is missing*: `"<Concrete edge twist that nudges Point 2>"`
 
-### Q1.2 `<Repeat Q1.2 text>`
-- **Core Scoring Points (`3`)**:
-  1. **<Keyword Anchor 1>**: `<Explanation>`
-  2. **<Keyword Anchor 2>**: `<Explanation>`
-  3. **<Keyword Anchor 3>**: `<Explanation>`
-- **Scenario Probes (Use if a point is missed — do NOT spoil directly)**:
-  - *Missing Point 1*: `"<Concrete tradeoff / incident prompt>"`
+### Q1.2 `<Repeat Q1.2 question>`
+- **Key Points (`3`)**:
+  1. **<Keyword 1>**: `<Plain explanation>`
+  2. **<Keyword 2>**: `<Plain explanation>`
+  3. **<Keyword 3>**: `<Plain explanation>`
+- **Follow-Up Prompts if Missed (Do NOT spoil directly)**:
+  - *If Point 1 is missing*: `"<Concrete twist>"`
 """
 
 
 def validate_pair(target_dir: Path) -> tuple[bool, list[str]]:
-    """Validate structural integrity, Part 1-5 presence, and Q-ID parity without spoilers."""
+    """Validate 5-part structure, zero spoiler leakage, and Q-ID parity."""
     wb_path = target_dir / "workbench.md"
     ak_path = target_dir / "answer_key.md"
     errors: list[str] = []
@@ -193,8 +200,9 @@ def validate_pair(target_dir: Path) -> tuple[bool, list[str]]:
         if part not in wb_text:
             errors.append(f"workbench.md missing required section: {part}")
 
-    if "Core Scoring Points" in wb_text:
-        errors.append("Spoiler leak detected: 'Core Scoring Points' found inside workbench.md")
+    for spoiler_marker in ("Key Points (", "Core Scoring Points"):
+        if spoiler_marker in wb_text:
+            errors.append(f"Spoiler leak detected inside workbench.md: {spoiler_marker}")
 
     wb_qids = set(re.findall(r"^####\s+(Q\d+\.\d+)\b", wb_text, flags=re.MULTILINE))
     ak_qids = set(re.findall(r"^###\s+(Q\d+\.\d+)\b", ak_text, flags=re.MULTILINE))
@@ -204,9 +212,9 @@ def validate_pair(target_dir: Path) -> tuple[bool, list[str]]:
     missing_in_ak = sorted(wb_qids - ak_qids)
     extra_in_ak = sorted(ak_qids - wb_qids)
     if missing_in_ak:
-        errors.append(f"Q-IDs present in workbench.md missing from answer_key.md: {missing_in_ak}")
+        errors.append(f"Q-IDs in workbench.md missing from answer_key.md: {missing_in_ak}")
     if extra_in_ak:
-        errors.append(f"Extra Q-IDs in answer_key.md absent from workbench.md: {extra_in_ak}")
+        errors.append(f"Extra Q-IDs in answer_key.md missing from workbench.md: {extra_in_ak}")
 
     return len(errors) == 0, errors
 
@@ -216,36 +224,36 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Scaffold or validate a Socratic Workbench (workbench.md + answer_key.md)."
     )
-    parser.add_argument("--dir", required=True, help="Target unit directory path.")
+    parser.add_argument("--dir", required=True, help="Target study unit directory.")
     parser.add_argument("--title", default="New Study Unit", help="Unit title.")
     parser.add_argument(
         "--track",
         choices=sorted(TRACK_SPECS.keys()),
         default="coding",
-        help="Domain adapter track.",
+        help="Learning track: english | textbook | coding | interview.",
     )
     parser.add_argument(
         "--force",
         action="store_true",
-        help="Overwrite existing workbench.md / answer_key.md if present.",
+        help="Overwrite existing files if present.",
     )
     parser.add_argument(
         "--check",
         action="store_true",
-        help="Validate an existing workbench.md + answer_key.md pair instead of scaffolding.",
+        help="Validate existing workbench.md + answer_key.md instead of creating files.",
     )
     return parser.parse_args(argv)
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Entry point for CLI execution."""
+    """CLI entry point."""
     args = parse_args(argv if argv is not None else sys.argv[1:])
     target_dir = Path(args.dir)
 
     if args.check:
         ok, errors = validate_pair(target_dir)
         if ok:
-            print(f"OK: {target_dir} passed structure, anti-spoiler, and Q-ID parity checks.")
+            print(f"OK: {target_dir} passed structure, anti-spoiler, and Q-ID checks.")
             return 0
         for err in errors:
             print(f"ERROR: {err}", file=sys.stderr)
@@ -257,8 +265,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if not args.force and (wb_path.exists() or ak_path.exists()):
         print(
-            f"ERROR: Target already contains workbench.md or answer_key.md ({target_dir}). "
-            "Pass --force to overwrite.",
+            f"ERROR: {target_dir} already has workbench.md or answer_key.md. Use --force to overwrite.",
             file=sys.stderr,
         )
         return 2
@@ -271,7 +278,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"ERROR: {err}", file=sys.stderr)
         return 1
 
-    print(f"Scaffolded [{args.track}] workbench pair in {target_dir}")
+    print(f"Created [{args.track}] workbench in {target_dir}")
     return 0
 
 
